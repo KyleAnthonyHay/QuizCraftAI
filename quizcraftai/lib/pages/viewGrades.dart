@@ -4,7 +4,7 @@ import 'package:quizcraftai/services/database_service.dart';
 import 'package:quizcraftai/pages/LandingPage.dart'; 
 
 class ViewGradePage extends StatefulWidget {
-  const ViewGradePage({Key? key}) : super(key: key);
+  const ViewGradePage({super.key});
 
   @override
   _ViewGradePageState createState() => _ViewGradePageState();
@@ -14,7 +14,7 @@ class _ViewGradePageState extends State<ViewGradePage> {
   late Future<List<TestGrade>> gradesFuture;
   String? userId;
 
-  DatabaseService _databaseService = DatabaseService();
+  final DatabaseService _databaseService = DatabaseService();
 
   @override
   void initState() {
@@ -27,16 +27,16 @@ class _ViewGradePageState extends State<ViewGradePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('View Grades'),
+        title: const Text('View Grades'),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LandingPage()), // Navigate to the home component
+                MaterialPageRoute(builder: (context) => const LandingPage()), // Navigate to the home component
               );
             },
-            icon: Icon(Icons.home), // Icon for the home button
+            icon: const Icon(Icons.home), // Icon for the home button
           ),
         ],
       ),
@@ -44,7 +44,7 @@ class _ViewGradePageState extends State<ViewGradePage> {
         future: gradesFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
@@ -55,12 +55,12 @@ class _ViewGradePageState extends State<ViewGradePage> {
                 TestGrade grade = grades[index];
                 return Card(
                   elevation: 3,
-                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: ListTile(
-                    leading: Icon(Icons.grade),
+                    leading: const Icon(Icons.grade),
                     title: Text(
                       grade.testName,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text('Score: ${grade.testScore}'),
                   ),

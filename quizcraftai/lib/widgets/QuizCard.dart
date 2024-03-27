@@ -2,7 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:quizcraftai/pages/LandingPage.dart';
 import 'dart:async';
 
 import 'package:quizcraftai/services/database_service.dart';
@@ -64,8 +63,8 @@ class _QuizCardState extends State<QuizCard> {
 
 //test function to make sure the list contains all the correct tests + their info
 Future<void> printTestNames() async {
-  DatabaseService _databaseService = DatabaseService();
-  List<TestGrade> testGrades = await _databaseService.getUserTestGrades(userId!);
+  DatabaseService databaseService = DatabaseService();
+  List<TestGrade> testGrades = await databaseService.getUserTestGrades(userId!);
   for (TestGrade testGrade in testGrades) {
     print(testGrade.testName);
   }
@@ -88,7 +87,7 @@ Future<void> printTestNames() async {
         return AlertDialog(
           title: Text('Congratulations!'),
           content: Text(
-              'You have completed the quiz with a score of ${quizAverage}!'),
+              'You have completed the quiz with a score of $quizAverage!'),
         );
         
       },
@@ -98,7 +97,7 @@ Future<void> printTestNames() async {
 
   @override
   Widget build(BuildContext context) {
-   DatabaseService _databaseService = DatabaseService(); // Create an instance of DatabaseService
+   DatabaseService databaseService = DatabaseService(); // Create an instance of DatabaseService
     return Flexible(
       child: Column(
         children: [
@@ -143,7 +142,7 @@ Future<void> printTestNames() async {
               print("Submitting quiz");
               handleQuizSubmit();
             if (userId != null) {
-                _databaseService.addTestGrades(userId!, "", widget.quizName, quizAverage); // Call addTestGrades method with the user's ID
+                databaseService.addTestGrades(userId!, "", widget.quizName, quizAverage); // Call addTestGrades method with the user's ID
                 printTestNames();
               } else {
                 print("User is not logged in");

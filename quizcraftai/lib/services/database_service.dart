@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:quizcraftai/testGrades.dart';
 
 const String TEST_GRADES_COLLECTION_REF = "testGrades";
 const String USERS_COLLECTION_REF = "users";

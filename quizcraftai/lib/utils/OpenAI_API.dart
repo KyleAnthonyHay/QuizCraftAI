@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:convert';
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +74,7 @@ class _OpenAI_APIState extends State<OpenAI_API> {
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => LandingPage()),
+                    MaterialPageRoute(builder: (context) => const LandingPage()),
                     (route) => false,
                   );
                 },
@@ -87,7 +86,7 @@ class _OpenAI_APIState extends State<OpenAI_API> {
               onPressed: () {
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => ViewGradePage()),
+                  MaterialPageRoute(builder: (context) => const ViewGradePage()),
                   (route) => false,
                 );
               },
@@ -100,12 +99,12 @@ class _OpenAI_APIState extends State<OpenAI_API> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              margin: EdgeInsets.only(top: 20),
+              margin: const EdgeInsets.only(top: 20),
               child: ElevatedButton(
                 onPressed: () async {
                   await sendPrompt();
                 },
-                child: Text('Generate Quiz'),
+                child: const Text('Generate Quiz'),
               ),
             ),
             QuizCard(quizContent: quizData, quizName: quizTopic),
